@@ -59,6 +59,7 @@ const styles = {
     fontSize: '13px',
   },
   heading: {
+    color: '#FFFFFF',
     fontFamily: 'Playfair Display, Georgia, serif',
     fontSize: 'clamp(42px, 7vw, 72px)',
     lineHeight: 1.08,
@@ -178,7 +179,7 @@ export default function Home() {
             little piece of Goa.
           </h1>
 
-          <p style={{ fontSize: '17px', lineHeight: 1.8, maxWidth: '550px' }}>
+          <p style={{ fontSize: '17px', lineHeight: 1.8, maxWidth: '550px', color: 'rgba(255,255,255,0.92)' }}>
             From quiet beaches and hidden waterfalls to colourful streets and
             unforgettable food, your Goan adventure starts here.
           </p>
@@ -222,6 +223,7 @@ export default function Home() {
           ].map((item) => (
             <Link
               key={item.title}
+              className="home-category-card"
               to={item.path}
               style={{
                 ...styles.cardBody,
@@ -252,7 +254,7 @@ export default function Home() {
 
         <div style={styles.grid}>
           {filteredPlaces.map((place) => (
-            <article key={place._id || place.name} style={styles.card}>
+            <article className="home-destination-card" key={place._id || place.name} style={styles.card}>
               <img
                 src={getImage(place)}
                 alt={place.name}
@@ -287,3 +289,4 @@ export default function Home() {
     </main>
   );
 }
+

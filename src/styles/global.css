@@ -1,4 +1,4 @@
-
+﻿
 /* =========================================
    SUSHEGAD GOA - GLOBAL STYLES
 ========================================= */
@@ -754,3 +754,44 @@ p {
 .hidden {
   display: none !important;
 }
+
+/* =========================================
+   HOMEPAGE CARD ENHANCEMENTS
+========================================= */
+
+.home-category-card,
+.home-destination-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.home-category-card:hover,
+.home-destination-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 16px 38px rgba(0, 77, 76, 0.13) !important;
+}
+
+.home-destination-card img {
+  transition: transform 0.5s ease;
+}
+
+.home-destination-card:hover img {
+  transform: scale(1.045);
+}
+
+.home-category-card h3,
+.home-destination-card h3 {
+  transition: color 0.25s ease;
+}
+
+.home-category-card:hover h3,
+.home-destination-card:hover h3 {
+  color: #006D6F;
+}
+
+.home-category-card:focus-visible,
+.home-destination-card a:focus-visible {
+  outline: 3px solid #3DBCA8;
+  outline-offset: 4px;
+}
+
+
