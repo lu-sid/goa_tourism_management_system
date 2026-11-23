@@ -1,0 +1,1012 @@
+<?xml version='1.0' encoding='utf-8'?>
+<XMI xmlns:UML="org.omg.xmi.namespace.UML" xmi.version="1.2">
+  <XMI.header>
+    <XMI.documentation>
+      <XMI.exporter>Goa Tourism UML artifacts</XMI.exporter>
+      <XMI.exporterVersion>1.0</XMI.exporterVersion>
+    </XMI.documentation>
+    <XMI.metamodel xmi.name="UML" xmi.version="1.4" />
+  </XMI.header>
+  <XMI.content>
+    <UML:Model xmi.id="model_goa_tourism" name="Goa Tourism Management System">
+      <UML:Namespace.ownedElement>
+        <UML:Package xmi.id="pkg_usecases" name="Implemented and planned use cases">
+          <UML:Namespace.ownedElement>
+            <UML:Actor xmi.id="actor_Tourist" name="Tourist" />
+            <UML:Actor xmi.id="actor_Admin_(planned)" name="Admin (planned)" />
+            <UML:Actor xmi.id="actor_External_Map_and_Geocoding_Services" name="External Map and Geocoding Services" />
+            <UML:UseCase xmi.id="uc_3341826165119317505" name="Search location by place name">
+              <UML:ModelElement.stereotype>Implemented</UML:ModelElement.stereotype>
+            </UML:UseCase>
+            <UML:UseCase xmi.id="uc_7699102705741753443" name="Search nearby using browser geolocation">
+              <UML:ModelElement.stereotype>Implemented</UML:ModelElement.stereotype>
+            </UML:UseCase>
+            <UML:UseCase xmi.id="uc_6859458815859021061" name="Filter places by text and category">
+              <UML:ModelElement.stereotype>Implemented</UML:ModelElement.stereotype>
+            </UML:UseCase>
+            <UML:UseCase xmi.id="uc_745864953035718587" name="View place cards and map markers">
+              <UML:ModelElement.stereotype>Implemented</UML:ModelElement.stereotype>
+            </UML:UseCase>
+            <UML:UseCase xmi.id="uc_1299160614818652466" name="Open external directions">
+              <UML:ModelElement.stereotype>Implemented</UML:ModelElement.stereotype>
+            </UML:UseCase>
+            <UML:UseCase xmi.id="uc_2386985311041946816" name="Save or remove place in current session">
+              <UML:ModelElement.stereotype>Implemented; browser state only</UML:ModelElement.stereotype>
+            </UML:UseCase>
+            <UML:UseCase xmi.id="uc_3627460347689268666" name="Register and authenticate">
+              <UML:ModelElement.stereotype>Planned; no UI/API implementation</UML:ModelElement.stereotype>
+            </UML:UseCase>
+            <UML:UseCase xmi.id="uc_5833153046168890419" name="Browse hotels and restaurants">
+              <UML:ModelElement.stereotype>Planned; model schemas only</UML:ModelElement.stereotype>
+            </UML:UseCase>
+            <UML:UseCase xmi.id="uc_1570968955077483545" name="Explore tour packages">
+              <UML:ModelElement.stereotype>Planned; model schema only</UML:ModelElement.stereotype>
+            </UML:UseCase>
+            <UML:UseCase xmi.id="uc_664689617886681738" name="Create booking">
+              <UML:ModelElement.stereotype>Planned; model schema only</UML:ModelElement.stereotype>
+            </UML:UseCase>
+            <UML:UseCase xmi.id="uc_8071382024565643999" name="Pay for booking">
+              <UML:ModelElement.stereotype>Planned; Payment schema only; no gateway integration</UML:ModelElement.stereotype>
+            </UML:UseCase>
+            <UML:UseCase xmi.id="uc_5834804367314424616" name="Submit review">
+              <UML:ModelElement.stereotype>Planned; model schema only</UML:ModelElement.stereotype>
+            </UML:UseCase>
+            <UML:UseCase xmi.id="uc_5270496402625823374" name="Submit feedback">
+              <UML:ModelElement.stereotype>Planned; model schema only</UML:ModelElement.stereotype>
+            </UML:UseCase>
+            <UML:UseCase xmi.id="uc_182888309143198216" name="Administer tourism content">
+              <UML:ModelElement.stereotype>Planned; no admin UI/API implementation</UML:ModelElement.stereotype>
+            </UML:UseCase>
+          </UML:Namespace.ownedElement>
+        </UML:Package>
+        <UML:Package xmi.id="pkg_domain" name="MongoDB domain model and implemented discovery client">
+          <UML:Namespace.ownedElement>
+            <UML:DataType xmi.id="dt_String" name="String" />
+            <UML:DataType xmi.id="dt_Number" name="Number" />
+            <UML:DataType xmi.id="dt_Boolean" name="Boolean" />
+            <UML:DataType xmi.id="dt_Date" name="Date" />
+            <UML:DataType xmi.id="dt_ObjectId" name="ObjectId" />
+            <UML:DataType xmi.id="dt_ObjectId[]" name="ObjectId[]" />
+            <UML:DataType xmi.id="dt_StringArray" name="StringArray" />
+            <UML:DataType xmi.id="dt_NumberArray" name="NumberArray" />
+            <UML:DataType xmi.id="dt_EmbeddedObject" name="EmbeddedObject" />
+            <UML:DataType xmi.id="dt_EmbeddedObject[]" name="EmbeddedObject[]" />
+            <UML:DataType xmi.id="dt_Void" name="Void" />
+            <UML:Class xmi.id="c_User" name="User" isAbstract="false">
+              <UML:Classifier.feature>
+                <UML:Attribute xmi.id="a_User_name" name="name" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_User_email" name="email" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_User_password" name="password" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_User_phone" name="phone" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_User_role" name="role" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_User_createdAt" name="createdAt" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Date" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_User_updatedAt" name="updatedAt" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Date" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+              </UML:Classifier.feature>
+              <UML:ModelElement.comment>Mongoose schema only: no application controller/service operations are implemented.</UML:ModelElement.comment>
+            </UML:Class>
+            <UML:Class xmi.id="c_TouristPlace" name="TouristPlace" isAbstract="false">
+              <UML:Classifier.feature>
+                <UML:Attribute xmi.id="a_TouristPlace_name" name="name" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TouristPlace_description" name="description" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TouristPlace_category" name="category" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TouristPlace_location" name="location" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_EmbeddedObject" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TouristPlace_entryFee" name="entryFee" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Number" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TouristPlace_openingTime" name="openingTime" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TouristPlace_closingTime" name="closingTime" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TouristPlace_images" name="images" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_StringArray" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TouristPlace_bestTimeToVisit" name="bestTimeToVisit" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TouristPlace_isFeatured" name="isFeatured" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Boolean" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TouristPlace_status" name="status" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TouristPlace_createdAt" name="createdAt" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Date" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TouristPlace_updatedAt" name="updatedAt" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Date" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+              </UML:Classifier.feature>
+              <UML:ModelElement.comment>Mongoose schema only: no application controller/service operations are implemented.</UML:ModelElement.comment>
+            </UML:Class>
+            <UML:Class xmi.id="c_Hotel" name="Hotel" isAbstract="false">
+              <UML:Classifier.feature>
+                <UML:Attribute xmi.id="a_Hotel_name" name="name" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Hotel_description" name="description" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Hotel_category" name="category" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Hotel_location" name="location" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_EmbeddedObject" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Hotel_pricePerNight" name="pricePerNight" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Number" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Hotel_rating" name="rating" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Number" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Hotel_amenities" name="amenities" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_StringArray" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Hotel_images" name="images" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_StringArray" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Hotel_contactNumber" name="contactNumber" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Hotel_email" name="email" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Hotel_totalRooms" name="totalRooms" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Number" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Hotel_availableRooms" name="availableRooms" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Number" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Hotel_status" name="status" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Hotel_createdAt" name="createdAt" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Date" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Hotel_updatedAt" name="updatedAt" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Date" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+              </UML:Classifier.feature>
+              <UML:ModelElement.comment>Mongoose schema only: no application controller/service operations are implemented.</UML:ModelElement.comment>
+            </UML:Class>
+            <UML:Class xmi.id="c_Restaurant" name="Restaurant" isAbstract="false">
+              <UML:Classifier.feature>
+                <UML:Attribute xmi.id="a_Restaurant_name" name="name" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Restaurant_description" name="description" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Restaurant_cuisine" name="cuisine" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_StringArray" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Restaurant_location" name="location" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_EmbeddedObject" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Restaurant_averageCost" name="averageCost" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Number" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Restaurant_rating" name="rating" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Number" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Restaurant_openingTime" name="openingTime" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Restaurant_closingTime" name="closingTime" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Restaurant_images" name="images" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_StringArray" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Restaurant_contactNumber" name="contactNumber" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Restaurant_menu" name="menu" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_EmbeddedObject[]" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Restaurant_status" name="status" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Restaurant_createdAt" name="createdAt" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Date" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Restaurant_updatedAt" name="updatedAt" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Date" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+              </UML:Classifier.feature>
+              <UML:ModelElement.comment>Mongoose schema only: no application controller/service operations are implemented.</UML:ModelElement.comment>
+            </UML:Class>
+            <UML:Class xmi.id="c_TourPackage" name="TourPackage" isAbstract="false">
+              <UML:Classifier.feature>
+                <UML:Attribute xmi.id="a_TourPackage_name" name="name" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TourPackage_description" name="description" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TourPackage_category" name="category" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TourPackage_duration" name="duration" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_EmbeddedObject" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TourPackage_price" name="price" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Number" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TourPackage_maxPeople" name="maxPeople" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Number" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TourPackage_destinations" name="destinations" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_ObjectId[]" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TourPackage_itinerary" name="itinerary" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_EmbeddedObject[]" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TourPackage_inclusions" name="inclusions" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_StringArray" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TourPackage_exclusions" name="exclusions" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_StringArray" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TourPackage_images" name="images" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_StringArray" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TourPackage_startDate" name="startDate" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Date" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TourPackage_endDate" name="endDate" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Date" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TourPackage_status" name="status" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TourPackage_createdAt" name="createdAt" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Date" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_TourPackage_updatedAt" name="updatedAt" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Date" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+              </UML:Classifier.feature>
+              <UML:ModelElement.comment>Mongoose schema only: no application controller/service operations are implemented.</UML:ModelElement.comment>
+            </UML:Class>
+            <UML:Class xmi.id="c_Booking" name="Booking" isAbstract="false">
+              <UML:Classifier.feature>
+                <UML:Attribute xmi.id="a_Booking_bookingId" name="bookingId" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Booking_user" name="user" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_ObjectId" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Booking_bookingType" name="bookingType" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Booking_hotel" name="hotel" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_ObjectId" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Booking_tourPackage" name="tourPackage" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_ObjectId" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Booking_checkIn" name="checkIn" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Date" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Booking_checkOut" name="checkOut" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Date" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Booking_numberOfGuests" name="numberOfGuests" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Number" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Booking_totalAmount" name="totalAmount" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Number" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Booking_bookingDate" name="bookingDate" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Date" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Booking_status" name="status" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Booking_specialRequests" name="specialRequests" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Booking_createdAt" name="createdAt" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Date" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Booking_updatedAt" name="updatedAt" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Date" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+              </UML:Classifier.feature>
+              <UML:ModelElement.comment>Mongoose schema only: no application controller/service operations are implemented.</UML:ModelElement.comment>
+            </UML:Class>
+            <UML:Class xmi.id="c_Payment" name="Payment" isAbstract="false">
+              <UML:Classifier.feature>
+                <UML:Attribute xmi.id="a_Payment_paymentId" name="paymentId" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Payment_booking" name="booking" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_ObjectId" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Payment_user" name="user" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_ObjectId" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Payment_amount" name="amount" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Number" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Payment_currency" name="currency" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Payment_paymentMethod" name="paymentMethod" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Payment_transactionId" name="transactionId" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Payment_paymentGateway" name="paymentGateway" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Payment_status" name="status" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Payment_paymentDate" name="paymentDate" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Date" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Payment_createdAt" name="createdAt" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Date" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Payment_updatedAt" name="updatedAt" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Date" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+              </UML:Classifier.feature>
+              <UML:ModelElement.comment>Mongoose schema only: no application controller/service operations are implemented.</UML:ModelElement.comment>
+            </UML:Class>
+            <UML:Class xmi.id="c_Review" name="Review" isAbstract="false">
+              <UML:Classifier.feature>
+                <UML:Attribute xmi.id="a_Review_user" name="user" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_ObjectId" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Review_targetType" name="targetType" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Review_targetId" name="targetId" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_ObjectId" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Review_rating" name="rating" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Number" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Review_comment" name="comment" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Review_images" name="images" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_StringArray" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Review_status" name="status" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Review_createdAt" name="createdAt" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Date" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Review_updatedAt" name="updatedAt" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Date" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+              </UML:Classifier.feature>
+              <UML:ModelElement.comment>Mongoose schema only: no application controller/service operations are implemented.</UML:ModelElement.comment>
+            </UML:Class>
+            <UML:Class xmi.id="c_Feedback" name="Feedback" isAbstract="false">
+              <UML:Classifier.feature>
+                <UML:Attribute xmi.id="a_Feedback_user" name="user" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_ObjectId" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Feedback_name" name="name" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Feedback_email" name="email" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Feedback_subject" name="subject" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Feedback_message" name="message" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Feedback_category" name="category" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Feedback_status" name="status" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Feedback_adminResponse" name="adminResponse" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_String" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Feedback_createdAt" name="createdAt" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Date" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Attribute xmi.id="a_Feedback_updatedAt" name="updatedAt" visibility="private">
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref="dt_Date" />
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+              </UML:Classifier.feature>
+              <UML:ModelElement.comment>Mongoose schema only: no application controller/service operations are implemented.</UML:ModelElement.comment>
+            </UML:Class>
+            <UML:Association xmi.id="rel_UserBookings" name="UserBookings">
+              <UML:Association.connection>
+                <UML:AssociationEnd xmi.id="rel_UserBookings_end0" name="b" aggregation="none" isNavigable="true">
+                  <UML:AssociationEnd.participant>
+                    <UML:Class xmi.idref="c_User" />
+                  </UML:AssociationEnd.participant>
+                  <UML:AssociationEnd.multiplicity>
+                    <UML:Multiplicity xmi.id="rel_UserBookings_mult0">
+                      <UML:Multiplicity.range>
+                        <UML:MultiplicityRange xmi.id="rel_UserBookings_range0" lower="0" upper="-1" />
+                      </UML:Multiplicity.range>
+                    </UML:Multiplicity>
+                  </UML:AssociationEnd.multiplicity>
+                </UML:AssociationEnd>
+                <UML:AssociationEnd xmi.id="rel_UserBookings_end1" name="u" aggregation="none" isNavigable="true">
+                  <UML:AssociationEnd.participant>
+                    <UML:Class xmi.idref="c_Booking" />
+                  </UML:AssociationEnd.participant>
+                  <UML:AssociationEnd.multiplicity>
+                    <UML:Multiplicity xmi.id="rel_UserBookings_mult1">
+                      <UML:Multiplicity.range>
+                        <UML:MultiplicityRange xmi.id="rel_UserBookings_range1" lower="1" upper="1" />
+                      </UML:Multiplicity.range>
+                    </UML:Multiplicity>
+                  </UML:AssociationEnd.multiplicity>
+                </UML:AssociationEnd>
+              </UML:Association.connection>
+            </UML:Association>
+            <UML:Association xmi.id="rel_HotelBookings" name="HotelBookings">
+              <UML:Association.connection>
+                <UML:AssociationEnd xmi.id="rel_HotelBookings_end0" name="b" aggregation="none" isNavigable="true">
+                  <UML:AssociationEnd.participant>
+                    <UML:Class xmi.idref="c_Hotel" />
+                  </UML:AssociationEnd.participant>
+                  <UML:AssociationEnd.multiplicity>
+                    <UML:Multiplicity xmi.id="rel_HotelBookings_mult0">
+                      <UML:Multiplicity.range>
+                        <UML:MultiplicityRange xmi.id="rel_HotelBookings_range0" lower="0" upper="-1" />
+                      </UML:Multiplicity.range>
+                    </UML:Multiplicity>
+                  </UML:AssociationEnd.multiplicity>
+                </UML:AssociationEnd>
+                <UML:AssociationEnd xmi.id="rel_HotelBookings_end1" name="h" aggregation="none" isNavigable="true">
+                  <UML:AssociationEnd.participant>
+                    <UML:Class xmi.idref="c_Booking" />
+                  </UML:AssociationEnd.participant>
+                  <UML:AssociationEnd.multiplicity>
+                    <UML:Multiplicity xmi.id="rel_HotelBookings_mult1">
+                      <UML:Multiplicity.range>
+                        <UML:MultiplicityRange xmi.id="rel_HotelBookings_range1" lower="0" upper="1" />
+                      </UML:Multiplicity.range>
+                    </UML:Multiplicity>
+                  </UML:AssociationEnd.multiplicity>
+                </UML:AssociationEnd>
+              </UML:Association.connection>
+              <UML:ModelElement.comment>Conditional reference when bookingType is Hotel.</UML:ModelElement.comment>
+            </UML:Association>
+            <UML:Association xmi.id="rel_PackageBookings" name="PackageBookings">
+              <UML:Association.connection>
+                <UML:AssociationEnd xmi.id="rel_PackageBookings_end0" name="b" aggregation="none" isNavigable="true">
+                  <UML:AssociationEnd.participant>
+                    <UML:Class xmi.idref="c_TourPackage" />
+                  </UML:AssociationEnd.participant>
+                  <UML:AssociationEnd.multiplicity>
+                    <UML:Multiplicity xmi.id="rel_PackageBookings_mult0">
+                      <UML:Multiplicity.range>
+                        <UML:MultiplicityRange xmi.id="rel_PackageBookings_range0" lower="0" upper="-1" />
+                      </UML:Multiplicity.range>
+                    </UML:Multiplicity>
+                  </UML:AssociationEnd.multiplicity>
+                </UML:AssociationEnd>
+                <UML:AssociationEnd xmi.id="rel_PackageBookings_end1" name="t" aggregation="none" isNavigable="true">
+                  <UML:AssociationEnd.participant>
+                    <UML:Class xmi.idref="c_Booking" />
+                  </UML:AssociationEnd.participant>
+                  <UML:AssociationEnd.multiplicity>
+                    <UML:Multiplicity xmi.id="rel_PackageBookings_mult1">
+                      <UML:Multiplicity.range>
+                        <UML:MultiplicityRange xmi.id="rel_PackageBookings_range1" lower="0" upper="1" />
+                      </UML:Multiplicity.range>
+                    </UML:Multiplicity>
+                  </UML:AssociationEnd.multiplicity>
+                </UML:AssociationEnd>
+              </UML:Association.connection>
+              <UML:ModelElement.comment>Conditional reference when bookingType is TourPackage.</UML:ModelElement.comment>
+            </UML:Association>
+            <UML:Association xmi.id="rel_BookingPayments" name="BookingPayments">
+              <UML:Association.connection>
+                <UML:AssociationEnd xmi.id="rel_BookingPayments_end0" name="p" aggregation="none" isNavigable="true">
+                  <UML:AssociationEnd.participant>
+                    <UML:Class xmi.idref="c_Booking" />
+                  </UML:AssociationEnd.participant>
+                  <UML:AssociationEnd.multiplicity>
+                    <UML:Multiplicity xmi.id="rel_BookingPayments_mult0">
+                      <UML:Multiplicity.range>
+                        <UML:MultiplicityRange xmi.id="rel_BookingPayments_range0" lower="0" upper="-1" />
+                      </UML:Multiplicity.range>
+                    </UML:Multiplicity>
+                  </UML:AssociationEnd.multiplicity>
+                </UML:AssociationEnd>
+                <UML:AssociationEnd xmi.id="rel_BookingPayments_end1" name="b" aggregation="none" isNavigable="true">
+                  <UML:AssociationEnd.participant>
+                    <UML:Class xmi.idref="c_Payment" />
+                  </UML:AssociationEnd.participant>
+                  <UML:AssociationEnd.multiplicity>
+                    <UML:Multiplicity xmi.id="rel_BookingPayments_mult1">
+                      <UML:Multiplicity.range>
+                        <UML:MultiplicityRange xmi.id="rel_BookingPayments_range1" lower="1" upper="1" />
+                      </UML:Multiplicity.range>
+                    </UML:Multiplicity>
+                  </UML:AssociationEnd.multiplicity>
+                </UML:AssociationEnd>
+              </UML:Association.connection>
+            </UML:Association>
+            <UML:Association xmi.id="rel_UserPayments" name="UserPayments">
+              <UML:Association.connection>
+                <UML:AssociationEnd xmi.id="rel_UserPayments_end0" name="p" aggregation="none" isNavigable="true">
+                  <UML:AssociationEnd.participant>
+                    <UML:Class xmi.idref="c_User" />
+                  </UML:AssociationEnd.participant>
+                  <UML:AssociationEnd.multiplicity>
+                    <UML:Multiplicity xmi.id="rel_UserPayments_mult0">
+                      <UML:Multiplicity.range>
+                        <UML:MultiplicityRange xmi.id="rel_UserPayments_range0" lower="0" upper="-1" />
+                      </UML:Multiplicity.range>
+                    </UML:Multiplicity>
+                  </UML:AssociationEnd.multiplicity>
+                </UML:AssociationEnd>
+                <UML:AssociationEnd xmi.id="rel_UserPayments_end1" name="u" aggregation="none" isNavigable="true">
+                  <UML:AssociationEnd.participant>
+                    <UML:Class xmi.idref="c_Payment" />
+                  </UML:AssociationEnd.participant>
+                  <UML:AssociationEnd.multiplicity>
+                    <UML:Multiplicity xmi.id="rel_UserPayments_mult1">
+                      <UML:Multiplicity.range>
+                        <UML:MultiplicityRange xmi.id="rel_UserPayments_range1" lower="1" upper="1" />
+                      </UML:Multiplicity.range>
+                    </UML:Multiplicity>
+                  </UML:AssociationEnd.multiplicity>
+                </UML:AssociationEnd>
+              </UML:Association.connection>
+            </UML:Association>
+            <UML:Association xmi.id="rel_PackageDestinations" name="PackageDestinations">
+              <UML:Association.connection>
+                <UML:AssociationEnd xmi.id="rel_PackageDestinations_end0" name="t" aggregation="none" isNavigable="true">
+                  <UML:AssociationEnd.participant>
+                    <UML:Class xmi.idref="c_TourPackage" />
+                  </UML:AssociationEnd.participant>
+                  <UML:AssociationEnd.multiplicity>
+                    <UML:Multiplicity xmi.id="rel_PackageDestinations_mult0">
+                      <UML:Multiplicity.range>
+                        <UML:MultiplicityRange xmi.id="rel_PackageDestinations_range0" lower="0" upper="-1" />
+                      </UML:Multiplicity.range>
+                    </UML:Multiplicity>
+                  </UML:AssociationEnd.multiplicity>
+                </UML:AssociationEnd>
+                <UML:AssociationEnd xmi.id="rel_PackageDestinations_end1" name="t" aggregation="none" isNavigable="true">
+                  <UML:AssociationEnd.participant>
+                    <UML:Class xmi.idref="c_TouristPlace" />
+                  </UML:AssociationEnd.participant>
+                  <UML:AssociationEnd.multiplicity>
+                    <UML:Multiplicity xmi.id="rel_PackageDestinations_mult1">
+                      <UML:Multiplicity.range>
+                        <UML:MultiplicityRange xmi.id="rel_PackageDestinations_range1" lower="0" upper="-1" />
+                      </UML:Multiplicity.range>
+                    </UML:Multiplicity>
+                  </UML:AssociationEnd.multiplicity>
+                </UML:AssociationEnd>
+              </UML:Association.connection>
+              <UML:ModelElement.comment>TourPackage.destinations references TouristPlace documents.</UML:ModelElement.comment>
+            </UML:Association>
+            <UML:Association xmi.id="rel_UserReviews" name="UserReviews">
+              <UML:Association.connection>
+                <UML:AssociationEnd xmi.id="rel_UserReviews_end0" name="r" aggregation="none" isNavigable="true">
+                  <UML:AssociationEnd.participant>
+                    <UML:Class xmi.idref="c_User" />
+                  </UML:AssociationEnd.participant>
+                  <UML:AssociationEnd.multiplicity>
+                    <UML:Multiplicity xmi.id="rel_UserReviews_mult0">
+                      <UML:Multiplicity.range>
+                        <UML:MultiplicityRange xmi.id="rel_UserReviews_range0" lower="0" upper="-1" />
+                      </UML:Multiplicity.range>
+                    </UML:Multiplicity>
+                  </UML:AssociationEnd.multiplicity>
+                </UML:AssociationEnd>
+                <UML:AssociationEnd xmi.id="rel_UserReviews_end1" name="u" aggregation="none" isNavigable="true">
+                  <UML:AssociationEnd.participant>
+                    <UML:Class xmi.idref="c_Review" />
+                  </UML:AssociationEnd.participant>
+                  <UML:AssociationEnd.multiplicity>
+                    <UML:Multiplicity xmi.id="rel_UserReviews_mult1">
+                      <UML:Multiplicity.range>
+                        <UML:MultiplicityRange xmi.id="rel_UserReviews_range1" lower="1" upper="1" />
+                      </UML:Multiplicity.range>
+                    </UML:Multiplicity>
+                  </UML:AssociationEnd.multiplicity>
+                </UML:AssociationEnd>
+              </UML:Association.connection>
+            </UML:Association>
+            <UML:Association xmi.id="rel_UserFeedback" name="UserFeedback">
+              <UML:Association.connection>
+                <UML:AssociationEnd xmi.id="rel_UserFeedback_end0" name="f" aggregation="none" isNavigable="true">
+                  <UML:AssociationEnd.participant>
+                    <UML:Class xmi.idref="c_User" />
+                  </UML:AssociationEnd.participant>
+                  <UML:AssociationEnd.multiplicity>
+                    <UML:Multiplicity xmi.id="rel_UserFeedback_mult0">
+                      <UML:Multiplicity.range>
+                        <UML:MultiplicityRange xmi.id="rel_UserFeedback_range0" lower="0" upper="-1" />
+                      </UML:Multiplicity.range>
+                    </UML:Multiplicity>
+                  </UML:AssociationEnd.multiplicity>
+                </UML:AssociationEnd>
+                <UML:AssociationEnd xmi.id="rel_UserFeedback_end1" name="u" aggregation="none" isNavigable="true">
+                  <UML:AssociationEnd.participant>
+                    <UML:Class xmi.idref="c_Feedback" />
+                  </UML:AssociationEnd.participant>
+                  <UML:AssociationEnd.multiplicity>
+                    <UML:Multiplicity xmi.id="rel_UserFeedback_mult1">
+                      <UML:Multiplicity.range>
+                        <UML:MultiplicityRange xmi.id="rel_UserFeedback_range1" lower="0" upper="1" />
+                      </UML:Multiplicity.range>
+                    </UML:Multiplicity>
+                  </UML:AssociationEnd.multiplicity>
+                </UML:AssociationEnd>
+              </UML:Association.connection>
+            </UML:Association>
+            <UML:Class xmi.id="c_App" name="App" isAbstract="false">
+              <UML:Classifier.feature>
+                <UML:Operation xmi.id="op_App_searchAround" name="searchAround" visibility="public">
+                  <UML:BehavioralFeature.parameter>
+                    <UML:Parameter xmi.id="ret_App_searchAround" kind="return">
+                      <UML:Parameter.type>
+                        <UML:DataType xmi.idref="dt_Void" />
+                      </UML:Parameter.type>
+                    </UML:Parameter>
+                  </UML:BehavioralFeature.parameter>
+                </UML:Operation>
+                <UML:Operation xmi.id="op_App_searchMyLocation" name="searchMyLocation" visibility="public">
+                  <UML:BehavioralFeature.parameter>
+                    <UML:Parameter xmi.id="ret_App_searchMyLocation" kind="return">
+                      <UML:Parameter.type>
+                        <UML:DataType xmi.idref="dt_Void" />
+                      </UML:Parameter.type>
+                    </UML:Parameter>
+                  </UML:BehavioralFeature.parameter>
+                </UML:Operation>
+                <UML:Operation xmi.id="op_App_toggleSaved" name="toggleSaved" visibility="public">
+                  <UML:BehavioralFeature.parameter>
+                    <UML:Parameter xmi.id="ret_App_toggleSaved" kind="return">
+                      <UML:Parameter.type>
+                        <UML:DataType xmi.idref="dt_Void" />
+                      </UML:Parameter.type>
+                    </UML:Parameter>
+                  </UML:BehavioralFeature.parameter>
+                </UML:Operation>
+                <UML:Operation xmi.id="op_App_notify" name="notify" visibility="public">
+                  <UML:BehavioralFeature.parameter>
+                    <UML:Parameter xmi.id="ret_App_notify" kind="return">
+                      <UML:Parameter.type>
+                        <UML:DataType xmi.idref="dt_Void" />
+                      </UML:Parameter.type>
+                    </UML:Parameter>
+                  </UML:BehavioralFeature.parameter>
+                </UML:Operation>
+              </UML:Classifier.feature>
+              <UML:ModelElement.comment>React component and implemented UI operations. Saved items remain in component state only.</UML:ModelElement.comment>
+            </UML:Class>
+            <UML:Class xmi.id="c_Location" name="Location" isAbstract="false">
+              <UML:Classifier.feature />
+              <UML:ModelElement.comment>Embedded Hotel/Restaurant location; TouristPlace location additionally has optional latitude/longitude.</UML:ModelElement.comment>
+            </UML:Class>
+            <UML:Class xmi.id="c_PackageDuration" name="PackageDuration" isAbstract="false">
+              <UML:Classifier.feature />
+              <UML:ModelElement.comment>Embedded days and nights.</UML:ModelElement.comment>
+            </UML:Class>
+            <UML:Class xmi.id="c_ItineraryItem" name="ItineraryItem" isAbstract="false">
+              <UML:Classifier.feature />
+              <UML:ModelElement.comment>Embedded day, title and activities.</UML:ModelElement.comment>
+            </UML:Class>
+            <UML:Class xmi.id="c_RestaurantMenuItem" name="RestaurantMenuItem" isAbstract="false">
+              <UML:Classifier.feature />
+              <UML:ModelElement.comment>Embedded itemName, price and category.</UML:ModelElement.comment>
+            </UML:Class>
+            <UML:Class xmi.id="c_DiscoveryPlace" name="DiscoveryPlace" isAbstract="false">
+              <UML:Classifier.feature />
+              <UML:ModelElement.comment>Frontend-only result/featured item; not a MongoDB model.</UML:ModelElement.comment>
+            </UML:Class>
+          </UML:Namespace.ownedElement>
+        </UML:Package>
+        <UML:StateMachine xmi.id="bookingSM" name="Booking schema status lifecycle (behavior not implemented)">
+          <UML:StateMachine.top>
+            <UML:CompositeState xmi.id="bookingTop" name="Booking">
+              <UML:Namespace.ownedElement>
+                <UML:State xmi.id="state_Pending" name="Pending">
+                  <UML:ModelElement.comment>Allowed Booking.status enum value; transitions are not implemented in source.</UML:ModelElement.comment>
+                </UML:State>
+                <UML:State xmi.id="state_Confirmed" name="Confirmed">
+                  <UML:ModelElement.comment>Allowed Booking.status enum value; transitions are not implemented in source.</UML:ModelElement.comment>
+                </UML:State>
+                <UML:State xmi.id="state_Cancelled" name="Cancelled">
+                  <UML:ModelElement.comment>Allowed Booking.status enum value; transitions are not implemented in source.</UML:ModelElement.comment>
+                </UML:State>
+                <UML:State xmi.id="state_Completed" name="Completed">
+                  <UML:ModelElement.comment>Allowed Booking.status enum value; transitions are not implemented in source.</UML:ModelElement.comment>
+                </UML:State>
+              </UML:Namespace.ownedElement>
+              <UML:ModelElement.comment>Pending is the schema default on creation. No controller or route implements status changes.</UML:ModelElement.comment>
+            </UML:CompositeState>
+          </UML:StateMachine.top>
+        </UML:StateMachine>
+        <UML:Package xmi.id="pkg_flow" name="Implemented discovery workflow">
+          <UML:Namespace.ownedElement>
+            <UML:ActionState xmi.id="act_3067542002507027463" name="Enter location or request browser location" />
+            <UML:ActionState xmi.id="act_166580624494754447" name="Geocode typed location with Nominatim" />
+            <UML:ActionState xmi.id="act_9180888160283845051" name="Query nearby places through Overpass" />
+            <UML:ActionState xmi.id="act_915904653994101221" name="Filter results by keyword and category" />
+            <UML:ActionState xmi.id="act_2181535938130046625" name="Show place cards and map" />
+            <UML:ActionState xmi.id="act_799784987700155507" name="Toggle saved place in React state" />
+            <UML:ActionState xmi.id="act_2779630714933949964" name="Open directions in Google Maps" />
+            <UML:ActionState xmi.id="act_2683637662253901920" name="Save list disappears on refresh" />
+          </UML:Namespace.ownedElement>
+          <UML:ModelElement.comment>Semantic action inventory for the accompanying SVG workflow. Booking/payment activities are not implemented.</UML:ModelElement.comment>
+        </UML:Package>
+        <UML:Collaboration xmi.id="coll_discovery" name="Live place search (implemented frontend)">
+          <UML:Collaboration.interaction>
+            <UML:Interaction xmi.id="interaction_discovery" name="Search nearby places">
+              <UML:Interaction.context>
+                <UML:ClassifierRole xmi.id="role_Tourist" name="Tourist" />
+                <UML:ClassifierRole xmi.id="role_ReactApp" name="ReactApp" />
+                <UML:ClassifierRole xmi.id="role_Nominatim" name="Nominatim" />
+                <UML:ClassifierRole xmi.id="role_OverpassAPI" name="OverpassAPI" />
+                <UML:ClassifierRole xmi.id="role_ReactLeaflet" name="ReactLeaflet" />
+                <UML:ClassifierRole xmi.id="role_GoogleMaps" name="GoogleMaps" />
+              </UML:Interaction.context>
+              <UML:ModelElement.comment>Actual code uses browser fetch to Nominatim and Overpass; no backend API, controllers, MongoDB call, or payment gateway participates in this workflow.</UML:ModelElement.comment>
+            </UML:Interaction>
+          </UML:Collaboration.interaction>
+        </UML:Collaboration>
+      </UML:Namespace.ownedElement>
+    </UML:Model>
+  </XMI.content>
+</XMI>
