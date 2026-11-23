@@ -20,7 +20,8 @@ import Home from './pages/Home';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
 import MapPage from './pages/MapPage';
-import PlaceDetailsPage from './pages/places/PlaceDetailsPage';
+import PlacesPage from './pages/places/PlacesPage';
+import DestinationDetailsRouter from './pages/places/DestinationDetailsRouter';
 
 import {
   HotelsPage,
@@ -150,17 +151,9 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/map" element={<MapPage />} />
 
-        <Route
-          path="/places"
-          element={
-            <PlaceholderPage
-              title="Explore Goa"
-              description="Discover beaches, forts, waterfalls and beautiful destinations across Goa."
-            />
-          }
-        />
+        <Route path="/places" element={<PlacesPage />} />
 
-        <Route path="/places/:id" element={<PlaceDetailsPage />} />
+        <Route path="/places/:id" element={<DestinationDetailsRouter />} />
 
         <Route path="/hotels" element={<HotelsPage />} />
         <Route path="/hotels/:id" element={<HotelDetailsPage />} />
@@ -196,6 +189,7 @@ function App() {
 }
 
 export default App;
+
 
 
 

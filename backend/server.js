@@ -11,6 +11,7 @@ const feedbackRoutes = require("./routes/feedbackRoutes");
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const packageRoutes = require("./routes/packageRoutes");
+const placeRoutes = require("./routes/placeRoutes");
 
 const {
     notFound,
@@ -45,6 +46,7 @@ app.use("/api/feedback", feedbackRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/packages", packageRoutes);
+app.use("/api/places", placeRoutes);
 // Handle undefined routes
 app.use(notFound);
 
@@ -57,6 +59,7 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
 
 
 

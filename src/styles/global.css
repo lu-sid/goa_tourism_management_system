@@ -1500,3 +1500,542 @@ p {
   .admin-stats-grid { grid-template-columns: 1fr; }
   .admin-feedback-top { flex-direction: column; }
 }
+
+/* =====================================================
+   SUSHEGAD GOA - DESTINATION DISCOVERY
+   ===================================================== */
+
+.places-discovery-page {
+  background: #fbfdfb;
+  min-height: 70vh;
+  color: #183b3b;
+}
+
+.places-discovery-hero {
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  padding: 65px 7%;
+  color: #fff;
+  background:
+    linear-gradient(105deg, rgba(5, 48, 48, .94), rgba(0, 109, 111, .65)),
+    url("https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1800") center 48% / cover;
+}
+
+.places-discovery-hero-inner {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.places-discovery-eyebrow,
+.places-discovery-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #d9b95f;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.places-discovery-hero h1 {
+  margin: 18px 0 12px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(38px, 6vw, 66px);
+  line-height: 1.08;
+  font-weight: 600;
+}
+
+.places-discovery-hero p {
+  max-width: 570px;
+  color: rgba(255,255,255,.85);
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.places-search-box {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  max-width: 620px;
+  min-height: 58px;
+  margin-top: 28px;
+  padding: 0 18px;
+  border-radius: 12px;
+  background: #fff;
+  color: #006d6f;
+  box-shadow: 0 12px 36px rgba(0,0,0,.16);
+}
+
+.places-search-box input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #183b3b;
+  font: inherit;
+}
+
+.places-search-box button {
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: #637777;
+  cursor: pointer;
+}
+
+.places-discovery-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 65px 5% 85px;
+}
+
+.places-discovery-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.places-discovery-heading h2,
+.database-destination-content h2 {
+  margin: 10px 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(29px, 4vw, 40px);
+  color: #183b3b;
+}
+
+.places-discovery-heading p {
+  margin: 0;
+  color: #718080;
+}
+
+.places-map-link,
+.places-discovery-card-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  color: #006d6f;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.places-map-link {
+  padding: 12px 17px;
+  border: 1px solid #d9e8e3;
+  border-radius: 9px;
+  white-space: nowrap;
+}
+
+.places-map-link:hover {
+  background: #eef7f3;
+}
+
+.places-filter-heading {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 14px;
+  color: #365454;
+  font-weight: 700;
+}
+
+.places-category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 32px;
+}
+
+.places-category-filters button {
+  padding: 10px 16px;
+  border: 1px solid #dce9e4;
+  border-radius: 30px;
+  background: #fff;
+  color: #526d69;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s;
+}
+
+.places-category-filters button:hover,
+.places-category-filters button.active {
+  border-color: #006d6f;
+  background: #006d6f;
+  color: #fff;
+}
+
+.places-results-count {
+  margin-bottom: 17px;
+  color: #718080;
+  font-size: 13px;
+}
+
+.places-discovery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+}
+
+.places-discovery-card {
+  overflow: hidden;
+  border: 1px solid #e8efeb;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 5px 22px rgba(20, 62, 53, .045);
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+
+.places-discovery-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 34px rgba(20, 62, 53, .11);
+}
+
+.places-discovery-image-link {
+  position: relative;
+  display: block;
+  height: 220px;
+  overflow: hidden;
+  background: #eaf2ee;
+}
+
+.places-discovery-image-link img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .4s ease;
+}
+
+.places-discovery-card:hover img {
+  transform: scale(1.045);
+}
+
+.places-card-category {
+  position: absolute;
+  left: 15px;
+  bottom: 14px;
+  padding: 7px 12px;
+  border-radius: 30px;
+  background: rgba(255,255,255,.95);
+  color: #006d6f;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.places-discovery-card-body {
+  padding: 20px;
+}
+
+.places-card-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #00877f;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.places-discovery-card-body h3 {
+  margin: 10px 0 8px;
+  color: #183b3b;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 23px;
+}
+
+.places-discovery-card-body p {
+  display: -webkit-box;
+  min-height: 48px;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  color: #718080;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.places-discovery-card-link {
+  margin-top: 13px;
+  font-size: 13px;
+}
+
+.places-state {
+  display: flex;
+  min-height: 240px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 35px 20px;
+  text-align: center;
+  color: #718080;
+}
+
+.places-state h3 {
+  margin: 0;
+  color: #183b3b;
+}
+
+.places-state p {
+  max-width: 500px;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.places-state button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 17px;
+  border: 0;
+  border-radius: 8px;
+  background: #006d6f;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.places-loading-spinner {
+  width: 34px;
+  height: 34px;
+  border: 3px solid #dcebe5;
+  border-top-color: #00877f;
+  border-radius: 50%;
+  animation: sushegad-spin .8s linear infinite;
+}
+
+@keyframes sushegad-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Database destination detail page */
+
+.database-destination-page {
+  min-height: 70vh;
+  background: #fbfdfb;
+}
+
+.database-destination-hero {
+  min-height: 440px;
+  display: flex;
+  align-items: flex-end;
+  padding: 65px 7%;
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+}
+
+.database-destination-hero-content {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.database-destination-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 42px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.database-destination-hero-content > span {
+  display: block;
+  color: #ffd477;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.database-destination-hero h1 {
+  margin: 12px 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(38px, 6vw, 64px);
+}
+
+.database-destination-hero-content > p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,.9);
+}
+
+.database-destination-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.database-destination-actions a,
+.database-destination-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 43px;
+  padding: 0 17px;
+  border: 1px solid rgba(255,255,255,.55);
+  border-radius: 8px;
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+.database-destination-actions a {
+  border-color: #ffc857;
+  background: #ffc857;
+  color: #183b3b;
+}
+
+.database-destination-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 65px 5% 80px;
+}
+
+.database-destination-description {
+  max-width: 800px;
+  color: #657976;
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.database-destination-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 35px;
+}
+
+.database-destination-info-grid article {
+  display: flex;
+  min-height: 150px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 23px;
+  border: 1px solid #e5eee9;
+  border-radius: 12px;
+  background: #fff;
+  color: #00877f;
+}
+
+.database-destination-info-grid article span {
+  color: #718080;
+  font-size: 13px;
+}
+
+.database-destination-info-grid article strong {
+  color: #183b3b;
+  font-size: 14px;
+}
+
+.database-destination-location {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 25px;
+  padding: 25px;
+  border-radius: 13px;
+  background: #edf6f1;
+}
+
+.database-destination-location h3 {
+  margin: 8px 0;
+  color: #183b3b;
+}
+
+.database-destination-location p {
+  margin: 0;
+  color: #718080;
+}
+
+.database-destination-location a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #006d6f;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.database-destination-note {
+  margin-top: 20px;
+  color: #83918d;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .places-discovery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .places-discovery-hero {
+    min-height: 320px;
+    padding: 48px 6%;
+  }
+
+  .places-discovery-content {
+    padding: 45px 5% 60px;
+  }
+
+  .places-discovery-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .places-discovery-grid,
+  .database-destination-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .places-discovery-image-link {
+    height: 210px;
+  }
+
+  .database-destination-hero {
+    min-height: 390px;
+    padding: 45px 6%;
+  }
+
+  .database-destination-back {
+    margin-bottom: 35px;
+  }
+
+  .database-destination-location {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .places-loading-spinner {
+    animation: none;
+  }
+
+  .places-discovery-card,
+  .places-discovery-image-link img {
+    transition: none;
+  }
+}
