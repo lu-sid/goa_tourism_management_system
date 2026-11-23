@@ -1,4 +1,4 @@
-﻿import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard, Hotel, Utensils, CalendarCheck, MessageSquare,
@@ -15,6 +15,7 @@ const sections = [
   { id: "overview", label: "Overview", icon: LayoutDashboard },
   { id: "hotels", label: "Hotels", icon: Hotel },
   { id: "restaurants", label: "Restaurants", icon: Utensils },
+  { id: "packages", label: "Tour Packages", icon: MapPin },
   { id: "bookings", label: "Bookings", icon: CalendarCheck },
   { id: "feedback", label: "Feedback", icon: MessageSquare },
   { id: "users", label: "Users", icon: Users }
@@ -482,7 +483,7 @@ export default function AdminDashboard() {
         <StatCard icon={Hotel} label="Hotels" value={stats.hotels} detail="All listings" />
         <StatCard icon={Utensils} label="Restaurants" value={stats.restaurants} detail="All listings" />
         <StatCard icon={CalendarCheck} label="Bookings" value={stats.bookings} detail={`${stats.pending} pending`} />
-        <StatCard icon={IndianRupee} label="Confirmed revenue" value={money(stats.revenue)} detail="Confirmed and completed bookings" />
+        <StatCard icon={IndianRupee} label="Booking value" value={money(stats.revenue)} detail="Confirmed and completed bookings" />
         <StatCard icon={Users} label="Tourists" value={stats.users} detail="Registered accounts" />
         <StatCard icon={MessageSquare} label="New feedback" value={stats.feedback} detail="Awaiting review" />
       </div>
@@ -741,9 +742,15 @@ export default function AdminDashboard() {
             const Icon = section.icon;
             return (
               <button key={section.id} className={active === section.id ? "active" : ""} onClick={() => {
-                setActive(section.id);
                 setSearch("");
                 setMobileOpen(false);
+
+                if (section.id === "packages") {
+                  navigate("/admin/packages");
+                  return;
+                }
+
+                setActive(section.id);
               }}>
                 <Icon size={18} /><span>{section.label}</span>
                 {section.id === "bookings" && stats.pending > 0 && <small>{stats.pending}</small>}

@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowLeft,
@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 
 import {
-  getPackages,
+  getAdminPackages,
   createPackage,
   updatePackage,
   deletePackage
@@ -55,7 +55,7 @@ export default function ManagePackages() {
     setError('');
 
     try {
-      const response = await getPackages({ includeInactive: true });
+      const response = await getAdminPackages();
       setPackages(response.data.packages || []);
     } catch (err) {
       setError(err.response?.data?.message || 'Unable to load packages.');

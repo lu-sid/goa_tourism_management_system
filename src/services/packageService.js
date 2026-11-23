@@ -1,7 +1,10 @@
-﻿import api from './api';
+import api from './api';
 
 export const getPackages = (params = {}) =>
   api.get('/packages', { params });
+
+export const getAdminPackages = () =>
+  api.get('/packages/admin/all');
 
 export const getPackageById = (id) =>
   api.get(`/packages/${id}`);
