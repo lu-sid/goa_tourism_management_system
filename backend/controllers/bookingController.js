@@ -1,4 +1,4 @@
-
+﻿
 const Booking = require("../models/Booking");
 const Hotel = require("../models/Hotel");
 const TourPackage = require("../models/TourPackage");
@@ -18,26 +18,23 @@ const createBooking = async (req, res, next) => {
             specialRequests
         } = req.body;
 
-        if (!bookingType || !numberOfGuests || totalAmount === undefined) {
+        if (!bookingType || !numberOfGuests) {
             return res.status(400).json({
                 success: false,
-                message: "Booking type, number of guests and total amount are required."
+                message: "Booking type and number of guests are required."
             });
         }
 
-        if (!Number.isInteger(Number(numberOfGuests)) || Number(numberOfGuests) < 1) {
+        const guests = Number(numberOfGuests);
+
+        if (!Number.isInteger(guests) || guests < 1) {
             return res.status(400).json({
                 success: false,
                 message: "Number of guests must be at least 1."
             });
         }
 
-        if (Number(totalAmount) < 0) {
-            return res.status(400).json({
-                success: false,
-                message: "Invalid booking amount."
-            });
-        }
+        let calculatedTotalAmount = 0;
 
         if (bookingType === "Hotel") {
             if (!hotel || !checkIn || !checkOut) {
@@ -56,10 +53,44 @@ const createBooking = async (req, res, next) => {
                 });
             }
 
-            if (new Date(checkOut) <= new Date(checkIn)) {
+            const checkInDate = new Date(checkIn);
+            const checkOutDate = new Date(checkOut);
+
+            if (
+                Number.isNaN(checkInDate.getTime()) ||
+                Number.isNaN(checkOutDate.getTime()) ||
+                checkOutDate <= checkInDate
+            ) {
                 return res.status(400).json({
                     success: false,
-                    message: "Check-out must be after check-in."
+                    message: "Please provide valid check-in and check-out dates."
+                });
+            }
+
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            if (checkInDate < today) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Check-in date cannot be in the past."
+                });
+            }
+
+            const nights = Math.round(
+                (checkOutDate - checkInDate) / 86400000
+            );
+
+            calculatedTotalAmount =
+                nights * Number(hotelRecord.pricePerNight);
+
+            if (
+                !Number.isFinite(calculatedTotalAmount) ||
+                calculatedTotalAmount < 0
+            ) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Unable to calculate booking amount."
                 });
             }
 
@@ -80,12 +111,25 @@ const createBooking = async (req, res, next) => {
                 });
             }
 
-            if (Number(numberOfGuests) > packageRecord.maxPeople) {
+            if (guests > packageRecord.maxPeople) {
                 return res.status(400).json({
                     success: false,
                     message: `Maximum group size is ${packageRecord.maxPeople}.`
                 });
             }
+
+            const packagePrice = Number(packageRecord.price);
+
+            if (!Number.isFinite(packagePrice) || packagePrice < 0) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Package price is invalid."
+                });
+            }
+
+            // The server determines the total.
+            // Any totalAmount supplied by the browser is ignored.
+            calculatedTotalAmount = packagePrice * guests;
 
         } else {
             return res.status(400).json({
@@ -102,8 +146,8 @@ const createBooking = async (req, res, next) => {
             tourPackage: bookingType === "TourPackage" ? tourPackage : undefined,
             checkIn: bookingType === "Hotel" ? checkIn : undefined,
             checkOut: bookingType === "Hotel" ? checkOut : undefined,
-            numberOfGuests,
-            totalAmount,
+            numberOfGuests: guests,
+            totalAmount: calculatedTotalAmount,
             specialRequests
         });
 
@@ -117,7 +161,6 @@ const createBooking = async (req, res, next) => {
         next(error);
     }
 };
-
 // Get logged-in user's bookings
 const getMyBookings = async (req, res, next) => {
     try {
@@ -244,14 +287,21 @@ const cancelBooking = async (req, res, next) => {
 // Update booking status (Admin)
 const updateBookingStatus = async (req, res, next) => {
     try {
+        const transitions = {
+            Pending: ["Confirmed", "Cancelled"],
+            Confirmed: ["Completed", "Cancelled"],
+            Completed: [],
+            Cancelled: []
+        };
+
+        const { status } = req.body;
+
         const allowedStatuses = [
             "Pending",
             "Confirmed",
-            "Cancelled",
-            "Completed"
+            "Completed",
+            "Cancelled"
         ];
-
-        const { status } = req.body;
 
         if (!allowedStatuses.includes(status)) {
             return res.status(400).json({
@@ -260,11 +310,7 @@ const updateBookingStatus = async (req, res, next) => {
             });
         }
 
-        const booking = await Booking.findByIdAndUpdate(
-            req.params.id,
-            { status },
-            { new: true, runValidators: true }
-        );
+        const booking = await Booking.findById(req.params.id);
 
         if (!booking) {
             return res.status(404).json({
@@ -273,12 +319,31 @@ const updateBookingStatus = async (req, res, next) => {
             });
         }
 
+        if (booking.status === status) {
+            return res.status(200).json({
+                success: true,
+                message: "Booking already has this status.",
+                booking
+            });
+        }
+
+        const permitted = transitions[booking.status] || [];
+
+        if (!permitted.includes(status)) {
+            return res.status(409).json({
+                success: false,
+                message: "This booking status transition is not permitted."
+            });
+        }
+
+        booking.status = status;
+        await booking.save();
+
         res.status(200).json({
             success: true,
-            message: "Booking status updated.",
+            message: "Booking status updated successfully.",
             booking
         });
-
     } catch (error) {
         next(error);
     }
@@ -292,3 +357,6 @@ module.exports = {
     cancelBooking,
     updateBookingStatus
 };
+
+
+

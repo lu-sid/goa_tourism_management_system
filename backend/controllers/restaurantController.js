@@ -146,10 +146,29 @@ const deleteRestaurant = async (req, res, next) => {
     }
 };
 
+
+// Get every restaurant, including inactive listings (Admin only)
+const getAllRestaurantsAdmin = async (req, res, next) => {
+    try {
+        const restaurants = await Restaurant.find().sort({ createdAt: -1 });
+
+        res.status(200).json({
+            success: true,
+            count: restaurants.length,
+            restaurants
+        });
+    } catch (error) {
+        next(error);
+    }
+};
 module.exports = {
+    getAllRestaurantsAdmin,
     getAllRestaurants,
     getRestaurantById,
     createRestaurant,
     updateRestaurant,
     deleteRestaurant
 };
+
+
+

@@ -1,5 +1,6 @@
 ﻿
 const Hotel = require("../models/Hotel");
+const Booking = require("../models/Booking");
 
 // Get all active hotels
 const getAllHotels = async (req, res, next) => {
@@ -122,7 +123,7 @@ const updateHotel = async (req, res, next) => {
 // Delete hotel (Admin)
 const deleteHotel = async (req, res, next) => {
     try {
-        const hotel = await Hotel.findByIdAndDelete(req.params.id);
+        const hotel = await Hotel.findById(req.params.id);
 
         if (!hotel) {
             return res.status(404).json({
@@ -131,20 +132,52 @@ const deleteHotel = async (req, res, next) => {
             });
         }
 
+        const hasBookings = await Booking.exists({
+            hotel: hotel._id
+        });
+
+        if (hasBookings) {
+            return res.status(409).json({
+                success: false,
+                message: "This hotel has booking records. Set its status to Inactive instead of deleting it."
+            });
+        }
+
+        await hotel.deleteOne();
+
         res.status(200).json({
             success: true,
             message: "Hotel deleted successfully."
         });
-
     } catch (error) {
         next(error);
     }
 };
 
+
+// Get every hotel, including inactive listings (Admin only)
+const getAllHotelsAdmin = async (req, res, next) => {
+    try {
+        const hotels = await Hotel.find().sort({ createdAt: -1 });
+
+        res.status(200).json({
+            success: true,
+            count: hotels.length,
+            hotels
+        });
+    } catch (error) {
+        next(error);
+    }
+};
 module.exports = {
+    getAllHotelsAdmin,
     getAllHotels,
     getHotelById,
     createHotel,
     updateHotel,
     deleteHotel
 };
+
+
+
+

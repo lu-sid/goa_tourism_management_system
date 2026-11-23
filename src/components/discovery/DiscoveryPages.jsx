@@ -35,6 +35,7 @@ import {
   getRestaurantById
 } from '../../services/restaurantService';
 import { submitFeedback } from '../../services/feedbackService';
+import HotelBookingForm from './HotelBookingForm';
 
 const hotelSamples = [
   {
@@ -878,7 +879,7 @@ function DetailPage({ type }) {
             </div>
           </div>
 
-          <EnquiryForm item={item} type={type} />
+          {isHotel ? <HotelBookingForm hotel={item} /> : <EnquiryForm item={item} type={type} />}
         </aside>
       </div>
     </main>
@@ -990,3 +991,4 @@ export function ContactPage() {
     </main>
   );
 }
+

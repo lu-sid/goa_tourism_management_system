@@ -10,7 +10,9 @@ const {
 } = require("../controllers/hotelController");
 
 const { protect, authorize } = require("../middleware/authMiddleware");
+const { getAllHotelsAdmin } = require("../controllers/hotelController");
 
+router.get("/admin/all", protect, authorize("admin"), getAllHotelsAdmin);
 router.route("/")
     .get(getAllHotels)
     .post(protect, authorize("admin"), createHotel);
@@ -21,3 +23,4 @@ router.route("/:id")
     .delete(protect, authorize("admin"), deleteHotel);
 
 module.exports = router;
+

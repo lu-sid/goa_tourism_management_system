@@ -10,7 +10,9 @@ const {
 } = require("../controllers/restaurantController");
 
 const { protect, authorize } = require("../middleware/authMiddleware");
+const { getAllRestaurantsAdmin } = require("../controllers/restaurantController");
 
+router.get("/admin/all", protect, authorize("admin"), getAllRestaurantsAdmin);
 router.route("/")
     .get(getAllRestaurants)
     .post(protect, authorize("admin"), createRestaurant);
@@ -21,3 +23,4 @@ router.route("/:id")
     .delete(protect, authorize("admin"), deleteRestaurant);
 
 module.exports = router;
+
