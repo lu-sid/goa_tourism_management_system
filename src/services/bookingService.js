@@ -1,42 +1,19 @@
+﻿import api from './api';
 
-import api from './api';
+export const createBooking = (bookingData) =>
+  api.post('/bookings', bookingData);
 
-const bookingService = {
-  async createBooking(bookingData) {
-    const response = await api.post('/bookings', bookingData);
-    return response.data;
-  },
+export const getMyBookings = () =>
+  api.get('/bookings/my-bookings');
 
-  async getMyBookings(params = {}) {
-    const response = await api.get('/bookings/my-bookings', {
-      params,
-    });
+export const getAllBookings = (params = {}) =>
+  api.get('/bookings', { params });
 
-    return response.data;
-  },
+export const getBookingById = (id) =>
+  api.get(`/bookings/${id}`);
 
-  async getAllBookings(params = {}) {
-    const response = await api.get('/bookings', { params });
-    return response.data;
-  },
+export const cancelBooking = (id) =>
+  api.patch(`/bookings/${id}/cancel`);
 
-  async getBookingById(id) {
-    const response = await api.get(`/bookings/${id}`);
-    return response.data;
-  },
-
-  async cancelBooking(id) {
-    const response = await api.patch(`/bookings/${id}/cancel`);
-    return response.data;
-  },
-
-  async updateBookingStatus(id, status) {
-    const response = await api.patch(`/bookings/${id}/status`, {
-      status,
-    });
-
-    return response.data;
-  },
-};
-
-export default bookingService;
+export const updateBookingStatus = (id, status) =>
+  api.patch(`/bookings/${id}/status`, { status });

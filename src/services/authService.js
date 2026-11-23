@@ -1,80 +1,61 @@
-
-import api from './api';
+﻿import api from './api';
 
 const TOKEN_KEY = 'sushegad_token';
 const USER_KEY = 'sushegad_user';
 
-const saveAuthData = (response) => {
-  const result = response.data?.data ?? response.data;
+export const register = async (userData) => {
+  const response = await api.post('/auth/register', userData);
 
-  const token = result?.token || result?.accessToken;
-  const user = result?.user;
-
-  if (token) {
-    localStorage.setItem(TOKEN_KEY, token);
+  if (response.data?.token) {
+    localStorage.setItem(TOKEN_KEY, response.data.token);
   }
 
-  if (user) {
-    localStorage.setItem(USER_KEY, JSON.stringify(user));
+  if (response.data?.user) {
+    localStorage.setItem(USER_KEY, JSON.stringify(response.data.user));
   }
 
-  return result;
+  return response;
 };
 
-const authService = {
-  async register(userData) {
-    const response = await api.post('/auth/register', userData);
-    return saveAuthData(response);
-  },
+export const login = async (credentials) => {
+  const response = await api.post('/auth/login', credentials);
 
-  async login(credentials) {
-    const response = await api.post('/auth/login', credentials);
-    return saveAuthData(response);
-  },
+  if (response.data?.token) {
+    localStorage.setItem(TOKEN_KEY, response.data.token);
+  }
 
-  async logout() {
-    localStorage.removeItem(TOKEN_KEY);
+  if (response.data?.user) {
+    localStorage.setItem(USER_KEY, JSON.stringify(response.data.user));
+  }
+
+  return response;
+};
+
+export const logout = () => {
+  localStorage.removeItem(TOKEN_KEY);
+  localStorage.removeItem(USER_KEY);
+};
+
+export const getCurrentUser = () => {
+  const user = localStorage.getItem(USER_KEY);
+
+  if (!user) return null;
+
+  try {
+    return JSON.parse(user);
+  } catch {
     localStorage.removeItem(USER_KEY);
-  },
-
-  async getProfile() {
-    const response = await api.get('/users/profile');
-    const result = response.data?.data ?? response.data;
-
-    if (result?.user) {
-      localStorage.setItem(USER_KEY, JSON.stringify(result.user));
-    } else if (result && !Array.isArray(result)) {
-      localStorage.setItem(USER_KEY, JSON.stringify(result));
-    }
-
-    return result;
-  },
-
-  async updateProfile(userData) {
-    const response = await api.put('/users/profile', userData);
-    const result = response.data?.data ?? response.data;
-
-    const user = result?.user || result;
-
-    if (user) {
-      localStorage.setItem(USER_KEY, JSON.stringify(user));
-    }
-
-    return result;
-  },
-
-  getCurrentUser() {
-    const user = localStorage.getItem(USER_KEY);
-    return user ? JSON.parse(user) : null;
-  },
-
-  isAuthenticated() {
-    return Boolean(localStorage.getItem(TOKEN_KEY));
-  },
-
-  getToken() {
-    return localStorage.getItem(TOKEN_KEY);
-  },
+    return null;
+  }
 };
 
-export default authService;
+export const getProfile = () => api.get('/users/profile');
+
+export const updateProfile = (userData) =>
+  api.put('/users/profile', userData);
+
+export const isAuthenticated = () =>
+  Boolean(localStorage.getItem(TOKEN_KEY));
+
+export const getToken = () =>
+  localStorage.getItem(TOKEN_KEY);

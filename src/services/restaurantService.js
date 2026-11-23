@@ -1,59 +1,25 @@
+﻿import api from './api';
 
-import api from './api';
+export const getRestaurants = (params = {}) =>
+  api.get('/restaurants', { params });
 
-const restaurantService = {
-  async getRestaurants(params = {}) {
-    const response = await api.get('/restaurants', { params });
-    return response.data;
-  },
+export const getRestaurantById = (id) =>
+  api.get(`/restaurants/${id}`);
 
-  async getRestaurantById(id) {
-    const response = await api.get(`/restaurants/${id}`);
-    return response.data;
-  },
+export const searchRestaurants = (search) =>
+  api.get('/restaurants', { params: { search } });
 
-  async searchRestaurants(searchTerm) {
-    const response = await api.get('/restaurants', {
-      params: { search: searchTerm },
-    });
+export const getRestaurantsByCuisine = (cuisine) =>
+  api.get('/restaurants', { params: { cuisine } });
 
-    return response.data;
-  },
+export const getRestaurantsByLocation = (location) =>
+  api.get('/restaurants', { params: { location } });
 
-  async getRestaurantsByCuisine(cuisine) {
-    const response = await api.get('/restaurants', {
-      params: { cuisine },
-    });
+export const createRestaurant = (restaurantData) =>
+  api.post('/restaurants', restaurantData);
 
-    return response.data;
-  },
+export const updateRestaurant = (id, restaurantData) =>
+  api.put(`/restaurants/${id}`, restaurantData);
 
-  async getRestaurantsByLocation(location) {
-    const response = await api.get('/restaurants', {
-      params: { location },
-    });
-
-    return response.data;
-  },
-
-  async createRestaurant(restaurantData) {
-    const response = await api.post('/restaurants', restaurantData);
-    return response.data;
-  },
-
-  async updateRestaurant(id, restaurantData) {
-    const response = await api.put(
-      `/restaurants/${id}`,
-      restaurantData
-    );
-
-    return response.data;
-  },
-
-  async deleteRestaurant(id) {
-    const response = await api.delete(`/restaurants/${id}`);
-    return response.data;
-  },
-};
-
-export default restaurantService;
+export const deleteRestaurant = (id) =>
+  api.delete(`/restaurants/${id}`);

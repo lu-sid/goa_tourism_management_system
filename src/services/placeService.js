@@ -1,55 +1,25 @@
+﻿import api from './api';
 
-import api from './api';
+export const getPlaces = (params = {}) =>
+  api.get('/places', { params });
 
-const placeService = {
-  async getPlaces(params = {}) {
-    const response = await api.get('/places', { params });
-    return response.data;
-  },
+export const getPlaceById = (id) =>
+  api.get(`/places/${id}`);
 
-  async getPlaceById(id) {
-    const response = await api.get(`/places/${id}`);
-    return response.data;
-  },
+export const searchPlaces = (search) =>
+  api.get('/places', { params: { search } });
 
-  async searchPlaces(searchTerm) {
-    const response = await api.get('/places', {
-      params: { search: searchTerm },
-    });
+export const getPlacesByCategory = (category) =>
+  api.get('/places', { params: { category } });
 
-    return response.data;
-  },
+export const getPlacesByRegion = (region) =>
+  api.get('/places', { params: { region } });
 
-  async getPlacesByCategory(category) {
-    const response = await api.get('/places', {
-      params: { category },
-    });
+export const createPlace = (placeData) =>
+  api.post('/places', placeData);
 
-    return response.data;
-  },
+export const updatePlace = (id, placeData) =>
+  api.put(`/places/${id}`, placeData);
 
-  async getPlacesByRegion(region) {
-    const response = await api.get('/places', {
-      params: { region },
-    });
-
-    return response.data;
-  },
-
-  async createPlace(placeData) {
-    const response = await api.post('/places', placeData);
-    return response.data;
-  },
-
-  async updatePlace(id, placeData) {
-    const response = await api.put(`/places/${id}`, placeData);
-    return response.data;
-  },
-
-  async deletePlace(id) {
-    const response = await api.delete(`/places/${id}`);
-    return response.data;
-  },
-};
-
-export default placeService;
+export const deletePlace = (id) =>
+  api.delete(`/places/${id}`);

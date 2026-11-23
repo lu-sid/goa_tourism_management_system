@@ -1,51 +1,22 @@
+﻿import api from './api';
 
-import api from './api';
+export const getPackages = (params = {}) =>
+  api.get('/packages', { params });
 
-const packageService = {
-  async getPackages(params = {}) {
-    const response = await api.get('/packages', { params });
-    return response.data;
-  },
+export const getPackageById = (id) =>
+  api.get(`/packages/${id}`);
 
-  async getPackageById(id) {
-    const response = await api.get(`/packages/${id}`);
-    return response.data;
-  },
+export const searchPackages = (search) =>
+  api.get('/packages', { params: { search } });
 
-  async searchPackages(searchTerm) {
-    const response = await api.get('/packages', {
-      params: { search: searchTerm },
-    });
+export const getPackagesByCategory = (category) =>
+  api.get('/packages', { params: { category } });
 
-    return response.data;
-  },
+export const createPackage = (packageData) =>
+  api.post('/packages', packageData);
 
-  async getPackagesByCategory(category) {
-    const response = await api.get('/packages', {
-      params: { category },
-    });
+export const updatePackage = (id, packageData) =>
+  api.put(`/packages/${id}`, packageData);
 
-    return response.data;
-  },
-
-  async createPackage(packageData) {
-    const response = await api.post('/packages', packageData);
-    return response.data;
-  },
-
-  async updatePackage(id, packageData) {
-    const response = await api.put(
-      `/packages/${id}`,
-      packageData
-    );
-
-    return response.data;
-  },
-
-  async deletePackage(id) {
-    const response = await api.delete(`/packages/${id}`);
-    return response.data;
-  },
-};
-
-export default packageService;
+export const deletePackage = (id) =>
+  api.delete(`/packages/${id}`);

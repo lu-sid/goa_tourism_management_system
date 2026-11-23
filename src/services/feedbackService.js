@@ -1,35 +1,18 @@
+﻿import api from './api';
 
-import api from './api';
+export const submitFeedback = (feedbackData) =>
+  api.post('/feedback', feedbackData);
 
-const feedbackService = {
-  async submitFeedback(feedbackData) {
-    const response = await api.post('/feedback', feedbackData);
-    return response.data;
-  },
+export const createFeedback = submitFeedback;
 
-  async getAllFeedback(params = {}) {
-    const response = await api.get('/feedback', { params });
-    return response.data;
-  },
+export const getFeedback = (params = {}) =>
+  api.get('/feedback', { params });
 
-  async getFeedbackById(id) {
-    const response = await api.get(`/feedback/${id}`);
-    return response.data;
-  },
+export const getFeedbackById = (id) =>
+  api.get(`/feedback/${id}`);
 
-  async updateFeedback(id, feedbackData) {
-    const response = await api.put(
-      `/feedback/${id}`,
-      feedbackData
-    );
+export const updateFeedback = (id, feedbackData) =>
+  api.put(`/feedback/${id}`, feedbackData);
 
-    return response.data;
-  },
-
-  async deleteFeedback(id) {
-    const response = await api.delete(`/feedback/${id}`);
-    return response.data;
-  },
-};
-
-export default feedbackService;
+export const deleteFeedback = (id) =>
+  api.delete(`/feedback/${id}`);

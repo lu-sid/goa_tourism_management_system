@@ -1,47 +1,24 @@
+﻿import api from './api';
 
-import api from './api';
+export const createReview = (reviewData) =>
+  api.post('/reviews', reviewData);
 
-const reviewService = {
-  async createReview(reviewData) {
-    const response = await api.post('/reviews', reviewData);
-    return response.data;
-  },
+export const getReviews = (params = {}) =>
+  api.get('/reviews', { params });
 
-  async getReviews(params = {}) {
-    const response = await api.get('/reviews', { params });
-    return response.data;
-  },
+export const getMyReviews = () =>
+  api.get('/reviews/my-reviews');
 
-  async getItemReviews(targetType, targetId) {
-    const response = await api.get('/reviews', {
-      params: { targetType, targetId },
-    });
+export const getReviewsByTarget = (targetType, targetId) =>
+  api.get('/reviews', {
+    params: { targetType, targetId }
+  });
 
-    return response.data;
-  },
+export const getAllReviews = (params = {}) =>
+  api.get('/reviews/all', { params });
 
-  async getMyReviews() {
-    const response = await api.get('/reviews/my-reviews');
-    return response.data;
-  },
+export const updateReviewStatus = (id, status) =>
+  api.patch(`/reviews/${id}/status`, { status });
 
-  async getAllReviews(params = {}) {
-    const response = await api.get('/reviews/all', { params });
-    return response.data;
-  },
-
-  async updateReviewStatus(id, status) {
-    const response = await api.patch(`/reviews/${id}/status`, {
-      status,
-    });
-
-    return response.data;
-  },
-
-  async deleteReview(id) {
-    const response = await api.delete(`/reviews/${id}`);
-    return response.data;
-  },
-};
-
-export default reviewService;
+export const deleteReview = (id) =>
+  api.delete(`/reviews/${id}`);

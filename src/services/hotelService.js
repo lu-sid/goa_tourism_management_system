@@ -1,55 +1,22 @@
+﻿import api from './api';
 
-import api from './api';
+export const getHotels = (params = {}) =>
+  api.get('/hotels', { params });
 
-const hotelService = {
-  async getHotels(params = {}) {
-    const response = await api.get('/hotels', { params });
-    return response.data;
-  },
+export const getHotelById = (id) =>
+  api.get(`/hotels/${id}`);
 
-  async getHotelById(id) {
-    const response = await api.get(`/hotels/${id}`);
-    return response.data;
-  },
+export const searchHotels = (search) =>
+  api.get('/hotels', { params: { search } });
 
-  async searchHotels(searchTerm) {
-    const response = await api.get('/hotels', {
-      params: { search: searchTerm },
-    });
+export const getHotelsByLocation = (location) =>
+  api.get('/hotels', { params: { location } });
 
-    return response.data;
-  },
+export const createHotel = (hotelData) =>
+  api.post('/hotels', hotelData);
 
-  async getHotelsByLocation(location) {
-    const response = await api.get('/hotels', {
-      params: { location },
-    });
+export const updateHotel = (id, hotelData) =>
+  api.put(`/hotels/${id}`, hotelData);
 
-    return response.data;
-  },
-
-  async getHotelsByPrice(minPrice, maxPrice) {
-    const response = await api.get('/hotels', {
-      params: { minPrice, maxPrice },
-    });
-
-    return response.data;
-  },
-
-  async createHotel(hotelData) {
-    const response = await api.post('/hotels', hotelData);
-    return response.data;
-  },
-
-  async updateHotel(id, hotelData) {
-    const response = await api.put(`/hotels/${id}`, hotelData);
-    return response.data;
-  },
-
-  async deleteHotel(id) {
-    const response = await api.delete(`/hotels/${id}`);
-    return response.data;
-  },
-};
-
-export default hotelService;
+export const deleteHotel = (id) =>
+  api.delete(`/hotels/${id}`);
