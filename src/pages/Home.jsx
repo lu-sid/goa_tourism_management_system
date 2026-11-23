@@ -11,6 +11,7 @@ import {
   Waves,
 } from 'lucide-react';
 import { getPlaces } from '../services/placeService';
+import GoaMap from '../components/map/GoaMap';
 
 const fallbackPlaces = [
   {
@@ -286,7 +287,28 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      {/* INTERACTIVE GOA MAP */}
+      <section className="home-map-section">
+        <div className="home-map-heading">
+          <div>
+            <span className="map-eyebrow">EXPLORE BEYOND THE ORDINARY</span>
+            <h2>Explore Goa on the Map.</h2>
+            <p>
+              Find beautiful beaches, historic landmarks, nature escapes
+              and interesting places across Goa.
+            </p>
+          </div>
+
+          <Link to="/map" className="home-map-explore-link">
+            Open full map <ArrowRight size={17} />
+          </Link>
+        </div>
+
+        <GoaMap compact showFilters />
+      </section>
     </main>
   );
 }
+
 

@@ -1,0 +1,838 @@
+﻿.map-page {
+  background: #f3f8f6;
+  min-height: 80vh;
+  padding-bottom: 70px;
+}
+
+.map-page-heading {
+  padding: 42px 7% 28px;
+  background: linear-gradient(125deg, #e4f4ef 0%, #f7faf5 58%, #fff4df 100%);
+}
+
+.map-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #006D6F;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 28px;
+}
+
+.map-page-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.map-eyebrow {
+  display: block;
+  color: #00877f;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+  margin-bottom: 10px;
+}
+
+.map-page-heading h1 {
+  color: #123f3e;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1.15;
+  margin: 0 0 12px;
+}
+
+.map-page-heading p {
+  max-width: 650px;
+  color: #5d7470;
+  font-size: 15px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.map-heading-icon {
+  width: 82px;
+  height: 82px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 24px;
+  color: #006D6F;
+  background: rgba(61, 188, 168, 0.16);
+}
+
+.map-page-note {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #54716b;
+  font-size: 13px;
+  margin-top: 24px;
+}
+
+.map-page-content {
+  padding: 28px 5%;
+}
+
+.goa-map-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 18px;
+  align-items: stretch;
+  width: 100%;
+}
+
+.map-controls {
+  background: #ffffff;
+  border: 1px solid #e4eeea;
+  border-radius: 17px;
+  padding: 22px 18px;
+  box-shadow: 0 8px 28px rgba(18, 63, 62, 0.06);
+}
+
+.map-filter-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.map-filter-heading h2 {
+  margin: 0;
+  color: #183b3b;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 23px;
+}
+
+.map-category-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.map-category-button {
+  border: 1px solid #dce9e4;
+  background: #f7faf8;
+  color: #47615c;
+  border-radius: 30px;
+  padding: 9px 13px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  transition: 0.2s ease;
+}
+
+.map-category-button:hover,
+.map-category-button.active {
+  background: #006D6F;
+  border-color: #006D6F;
+  color: #ffffff;
+}
+
+.map-location-button {
+  width: 100%;
+  margin-top: 24px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  background: #fff7e6;
+  border: 1px solid #f5dfae;
+  border-radius: 10px;
+  color: #805c16;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.map-location-button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.map-location-error {
+  color: #bd4545;
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 12px 0 0;
+}
+
+.goa-map-container {
+  min-width: 0;
+  min-height: 570px;
+  height: 620px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 17px;
+  border: 1px solid #dce9e4;
+  box-shadow: 0 8px 28px rgba(18, 63, 62, 0.08);
+  background: #e5eeea;
+}
+
+.goa-leaflet-map {
+  width: 100%;
+  height: 100%;
+  min-height: 570px;
+  z-index: 1;
+}
+
+.map-place-count {
+  position: absolute;
+  z-index: 500;
+  bottom: 17px;
+  left: 17px;
+  background: #ffffff;
+  color: #006D6F;
+  border-radius: 30px;
+  padding: 9px 14px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.13);
+  font-size: 12px;
+  font-weight: 800;
+  pointer-events: none;
+}
+
+.sushegad-marker-wrapper {
+  background: transparent;
+  border: 0;
+}
+
+.sushegad-marker {
+  width: 25px;
+  height: 25px;
+  display: grid;
+  place-items: center;
+  background: var(--marker-color);
+  border: 3px solid #ffffff;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.sushegad-marker span {
+  width: 6px;
+  height: 6px;
+  background: #ffffff;
+  border-radius: 50%;
+}
+
+.map-popup {
+  min-width: 190px;
+  max-width: 240px;
+}
+
+.map-popup-category {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+
+.map-popup h3 {
+  color: #183b3b;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 18px;
+  margin: 6px 0;
+}
+
+.map-popup p {
+  color: #60736f;
+  font-size: 12px;
+  line-height: 1.55;
+  margin: 0 0 12px;
+}
+
+.map-directions-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #006D6F;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.map-directions-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 800px) {
+  .goa-map-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .map-controls {
+    padding: 18px;
+  }
+
+  .goa-map-container {
+    height: 540px;
+    min-height: 450px;
+  }
+
+  .goa-leaflet-map {
+    min-height: 450px;
+  }
+}
+
+@media (max-width: 560px) {
+  .map-page-heading {
+    padding: 28px 5% 22px;
+  }
+
+  .map-page-title-row {
+    align-items: flex-start;
+  }
+
+  .map-heading-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 15px;
+  }
+
+  .map-heading-icon svg {
+    width: 25px;
+  }
+
+  .map-page-content {
+    padding: 18px 4%;
+  }
+
+  .goa-map-container {
+    height: 470px;
+    min-height: 400px;
+  }
+
+  .goa-leaflet-map {
+    min-height: 400px;
+  }
+}
+
+/* ==========================================
+   SUSHEGAD GOA - DESTINATION GUIDE
+========================================== */
+
+.destination-guide-hero {
+  min-height: 490px;
+  display: flex;
+  align-items: flex-end;
+  background-size: cover;
+  background-position: center;
+  padding: 55px 9%;
+  color: #ffffff;
+}
+
+.destination-guide-hero-content {
+  max-width: 850px;
+}
+
+.destination-guide-hero .destination-back-link {
+  color: #ffffff;
+  margin-bottom: 55px;
+}
+
+.destination-guide-hero h1 {
+  color: #ffffff;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(42px, 7vw, 72px);
+  line-height: 1.08;
+  margin: 12px 0;
+}
+
+.destination-guide-hero-content > p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,.9);
+  font-size: 15px;
+}
+
+.destination-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.destination-save-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 13px 19px;
+  border-radius: 9px;
+  border: 1px solid rgba(255,255,255,.7);
+  background: rgba(255,255,255,.14);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+.destination-save-button.is-saved {
+  background: #fff0ee;
+  color: #d64b42;
+  border-color: #fff0ee;
+}
+
+.destination-guide-intro {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 55px 9% 25px;
+}
+
+.destination-guide-intro h2,
+.guide-section-heading h2,
+.destination-guide-cta h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: #183b3b;
+  font-size: clamp(27px, 4vw, 37px);
+  margin: 8px 0;
+}
+
+.destination-guide-intro p,
+.guide-section-heading p {
+  color: #637777;
+  line-height: 1.75;
+  max-width: 700px;
+}
+
+.guide-eyebrow {
+  color: #00877f;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.8px;
+}
+
+.guide-map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  color: #006D6F;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 12px 16px;
+  border: 1px solid #c9e1d9;
+  border-radius: 9px;
+  background: #ffffff;
+}
+
+.destination-guide-section {
+  padding: 35px 9%;
+}
+
+.guide-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 23px;
+}
+
+.guide-section-heading h2 {
+  margin-bottom: 5px;
+}
+
+.destination-photo-gallery {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  grid-template-rows: 190px 190px;
+  gap: 14px;
+}
+
+.destination-photo-gallery a {
+  display: block;
+  overflow: hidden;
+  border-radius: 15px;
+  background: #e5efeb;
+}
+
+.destination-photo-gallery a:first-child {
+  grid-row: span 2;
+}
+
+.destination-photo-gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .35s ease;
+}
+
+.destination-photo-gallery a:hover img {
+  transform: scale(1.045);
+}
+
+.guide-photo-note,
+.guide-disclaimer {
+  color: #81918c;
+  font-size: 11px;
+  line-height: 1.6;
+  margin-top: 12px;
+}
+
+.guide-visit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 17px;
+}
+
+.guide-info-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 23px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid #e4eee9;
+  box-shadow: 0 5px 20px rgba(18,63,62,.035);
+}
+
+.guide-info-card svg {
+  color: #00877f;
+}
+
+.guide-info-card span {
+  color: #71827e;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.guide-info-card strong {
+  color: #183b3b;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.guide-activity-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.guide-activity-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #e4eee9;
+}
+
+.guide-activity-card > span {
+  color: #00877f;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.guide-activity-card p {
+  margin: 0;
+  color: #355451;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.guide-tips-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.guide-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 17px;
+  background: #edf7f2;
+  border-radius: 10px;
+}
+
+.guide-tip svg {
+  flex-shrink: 0;
+  color: #00877f;
+  margin-top: 2px;
+}
+
+.guide-tip p {
+  margin: 0;
+  color: #355451;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.guide-recommendation-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.guide-recommendation-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  padding: 18px;
+  border-radius: 13px;
+  background: #ffffff;
+  border: 1px solid #e4eee9;
+  min-width: 0;
+}
+
+.guide-recommendation-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  background: #e9f5ef;
+  color: #006D6F;
+}
+
+.guide-recommendation-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.guide-recommendation-content h3 {
+  margin: 2px 0 7px;
+  color: #183b3b;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.guide-recommendation-content p {
+  color: #71827e;
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.guide-recommendation-card > a {
+  color: #006D6F;
+  flex-shrink: 0;
+}
+
+.guide-recommendation-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+  color: #637777;
+  font-size: 11px;
+}
+
+.guide-recommendation-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.guide-recommendation-meta svg {
+  color: #e4a72c;
+}
+
+.guide-discovery-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 23px;
+  border-radius: 14px;
+  background: #edf7f2;
+  color: #006D6F;
+}
+
+.guide-discovery-card > svg {
+  flex-shrink: 0;
+}
+
+.guide-discovery-card > div {
+  flex: 1;
+}
+
+.guide-discovery-card h3 {
+  color: #183b3b;
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+.guide-discovery-card p {
+  color: #637777;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.guide-discovery-card a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+  text-decoration: none;
+  color: #006D6F;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.guide-loading {
+  color: #71827e;
+  font-size: 13px;
+  padding: 15px 0;
+}
+
+.destination-location-card {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 35px;
+  padding: 25px;
+  border-radius: 13px;
+  border: 1px solid #e4eee9;
+  background: #ffffff;
+}
+
+.destination-location-card > div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.destination-location-card span {
+  color: #71827e;
+  font-size: 12px;
+}
+
+.destination-location-card strong {
+  color: #006D6F;
+  font-size: 16px;
+}
+
+.destination-location-card a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #006D6F;
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.destination-guide-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  margin: 35px 9% 65px;
+  padding: 35px;
+  border-radius: 18px;
+  background: linear-gradient(120deg, #e4f4ec, #fff2dc);
+}
+
+.destination-guide-cta > div > span {
+  color: #00877f;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.6px;
+}
+
+.destination-guide-cta h2 {
+  margin: 8px 0;
+}
+
+.destination-guide-cta p {
+  color: #637777;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.destination-guide-cta > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  flex-shrink: 0;
+  padding: 13px 18px;
+  border-radius: 9px;
+  background: #006D6F;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+@media (max-width: 850px) {
+  .guide-visit-grid,
+  .guide-recommendation-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .destination-guide-intro,
+  .destination-guide-cta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .guide-discovery-card {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 600px) {
+  .destination-guide-hero {
+    min-height: 440px;
+    padding: 35px 6%;
+  }
+
+  .destination-guide-hero .destination-back-link {
+    margin-bottom: 65px;
+  }
+
+  .destination-guide-intro,
+  .destination-guide-section {
+    padding-left: 6%;
+    padding-right: 6%;
+  }
+
+  .destination-photo-gallery {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 220px 130px;
+  }
+
+  .destination-photo-gallery a:first-child {
+    grid-column: span 2;
+    grid-row: auto;
+  }
+
+  .guide-visit-grid,
+  .guide-activity-grid,
+  .guide-tips-list,
+  .guide-recommendation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .destination-guide-cta {
+    margin-left: 6%;
+    margin-right: 6%;
+    padding: 25px;
+  }
+
+  .destination-location-card {
+    gap: 22px;
+  }
+
+  .destination-guide-cta > a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .guide-discovery-card a {
+    width: 100%;
+  }
+}

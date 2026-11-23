@@ -1,10 +1,10 @@
-
+﻿
 const Hotel = require("../models/Hotel");
 
 // Get all active hotels
 const getAllHotels = async (req, res, next) => {
     try {
-        const { search, city, category, minPrice, maxPrice } = req.query;
+        const { search, city, category, minPrice, maxPrice, minRating } = req.query;
 
         const filter = { status: "Active" };
 
@@ -37,7 +37,11 @@ const getAllHotels = async (req, res, next) => {
             }
         }
 
-        const hotels = await Hotel.find(filter);
+        if (minRating !== undefined && minRating !== "") {
+            filter.rating = { $gte: Number(minRating) };
+        }
+
+        const hotels = await Hotel.find(filter).sort({ rating: -1, createdAt: -1 });
 
         res.status(200).json({
             success: true,

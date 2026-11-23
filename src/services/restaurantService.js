@@ -12,8 +12,8 @@ export const searchRestaurants = (search) =>
 export const getRestaurantsByCuisine = (cuisine) =>
   api.get('/restaurants', { params: { cuisine } });
 
-export const getRestaurantsByLocation = (location) =>
-  api.get('/restaurants', { params: { location } });
+export const getRestaurantsByLocation = (city) =>
+  api.get('/restaurants', { params: { city } });
 
 export const createRestaurant = (restaurantData) =>
   api.post('/restaurants', restaurantData);

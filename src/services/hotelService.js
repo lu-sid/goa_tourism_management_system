@@ -9,8 +9,8 @@ export const getHotelById = (id) =>
 export const searchHotels = (search) =>
   api.get('/hotels', { params: { search } });
 
-export const getHotelsByLocation = (location) =>
-  api.get('/hotels', { params: { location } });
+export const getHotelsByLocation = (city) =>
+  api.get('/hotels', { params: { city } });
 
 export const createHotel = (hotelData) =>
   api.post('/hotels', hotelData);

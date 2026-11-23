@@ -1,8 +1,13 @@
-const express = require("express");
+﻿const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 
 const connectDB = require("./config/db");
+
+const hotelRoutes = require("./routes/hotelRoutes");
+const restaurantRoutes = require("./routes/restaurantRoutes");
+const bookingRoutes = require("./routes/bookingRoutes");
+const feedbackRoutes = require("./routes/feedbackRoutes");
 
 const {
     notFound,
@@ -30,6 +35,10 @@ app.get("/", (req, res) => {
     res.send("Goa Tourism Management System Backend is Running!");
 });
 
+app.use("/api/hotels", hotelRoutes);
+app.use("/api/restaurants", restaurantRoutes);
+app.use("/api/bookings", bookingRoutes);
+app.use("/api/feedback", feedbackRoutes);
 // Handle undefined routes
 app.use(notFound);
 
@@ -42,3 +51,4 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+

@@ -1,10 +1,10 @@
-
+﻿
 const Restaurant = require("../models/Restaurant");
 
 // Get all active restaurants
 const getAllRestaurants = async (req, res, next) => {
     try {
-        const { search, cuisine, city } = req.query;
+        const { search, cuisine, city, minPrice, maxPrice, minRating } = req.query;
 
         const filter = { status: "Active" };
 
@@ -30,7 +30,23 @@ const getAllRestaurants = async (req, res, next) => {
             ];
         }
 
-        const restaurants = await Restaurant.find(filter);
+        if (minPrice !== undefined || maxPrice !== undefined) {
+            filter.averageCost = {};
+
+            if (minPrice !== undefined && minPrice !== "") {
+                filter.averageCost.$gte = Number(minPrice);
+            }
+
+            if (maxPrice !== undefined && maxPrice !== "") {
+                filter.averageCost.$lte = Number(maxPrice);
+            }
+        }
+
+        if (minRating !== undefined && minRating !== "") {
+            filter.rating = { $gte: Number(minRating) };
+        }
+
+        const restaurants = await Restaurant.find(filter).sort({ rating: -1, createdAt: -1 });
 
         res.status(200).json({
             success: true,

@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from 'react-router-dom';
+﻿import { Routes, Route, Link } from 'react-router-dom';
 import {
   MapPin,
   Home as HomeIcon,
@@ -12,6 +12,15 @@ import React from 'react';
 import Home from './pages/Home';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
+import MapPage from './pages/MapPage';
+import PlaceDetailsPage from './pages/places/PlaceDetailsPage';
+import {
+  HotelsPage,
+  HotelDetailsPage,
+  RestaurantsPage,
+  RestaurantDetailsPage,
+  ContactPage
+} from './components/discovery/DiscoveryPages';
 
 import Profile from './pages/user/Profile';
 import MyBookings from './pages/user/MyBookings';
@@ -131,7 +140,7 @@ function Footer() {
       </p>
 
       <p style={{ color: '#b7d2cb', fontSize: '13px' }}>
-        © {new Date().getFullYear()} Sushegad Goa. All rights reserved.
+        Â© {new Date().getFullYear()} Sushegad Goa. All rights reserved.
       </p>
     </footer>
   );
@@ -182,6 +191,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/map" element={<MapPage />} />
 
         <Route
           path="/places"
@@ -193,35 +204,13 @@ function App() {
           }
         />
 
-        <Route
-          path="/places/:id"
-          element={
-            <PlaceholderPage
-              title="Destination Details"
-              description="Destination details will be available here."
-            />
-          }
-        />
+        <Route path="/places/:id" element={<PlaceDetailsPage />} />
 
-        <Route
-          path="/hotels"
-          element={
-            <PlaceholderPage
-              title="Places to Stay"
-              description="Discover hotels, resorts and stays across Goa."
-            />
-          }
-        />
+        <Route path="/hotels" element={<HotelsPage />} />
+        <Route path="/hotels/:id" element={<HotelDetailsPage />} />
 
-        <Route
-          path="/restaurants"
-          element={
-            <PlaceholderPage
-              title="Restaurants"
-              description="Explore restaurants and discover Goan cuisine."
-            />
-          }
-        />
+        <Route path="/restaurants" element={<RestaurantsPage />} />
+        <Route path="/restaurants/:id" element={<RestaurantDetailsPage />} />
 
         <Route
           path="/packages"
@@ -247,3 +236,6 @@ function App() {
 }
 
 export default App;
+
+
+
